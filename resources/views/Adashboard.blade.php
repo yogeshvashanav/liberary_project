@@ -11,6 +11,10 @@
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in as Admin!") }}
                     <h1> All Available books  </h1>
+                      <a href="/newbook" class="btn btn-success  btn-sm">Add book</a>
+                      <a href="/newbookcat" class="btn btn-primary  btn-sm">Add category</a>
+                      <a href="#" class="btn btn-info  btn-sm">view Request</a>
+                      <hr>
                     <table class="table table-bordered table-striped">
                         <tr>
                         <th>Book ID</th>

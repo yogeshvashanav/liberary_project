@@ -23,23 +23,23 @@ class BookController extends Controller
     // }
     // }
 
-    // public function addbook(){
-    // $book = DB::table('books') 
-    //                   ->insert([
-    //                     'title' => 'Rich Dad Poor dad',
-    //                     'author' => 'Robert T. Kiyosaki',
-    //                     'code' => '023',
-    //                     'availability' => '',
-    //                     'category_id' => '',
-    //                 ]);
-    //                   return redirect('/showbook');
+    public function addbook(Request $req){
+    $book = DB::table('books') 
+                      ->insert([
+                        'title' => $req->title,
+                        'author' => $req->author,
+                        'code' => $req->code,
+                        'availability' =>$req->avavailability,
+                        'category_id' =>$req->category_id,
+                    ]);
+                      return redirect('/showbook');
 
-    //                   if($book){
-    //                   echo "<h1>data successfully added.</h1>";
-    //                   }else{
-    //                     echo "<h1>data not added.</h1>";
-    //                   }
-    //                 }
+                      if($book){
+                      echo "<h1>data successfully added.</h1>";
+                      }else{
+                        echo "<h1>data not added.</h1>";
+                      }
+                    }
 
                            
                     
@@ -59,5 +59,15 @@ class BookController extends Controller
                     //     $book = DB::table('books')->get();
                     //     return $book;
                     //  }
+
+                    public function delete($id) {
+                        $deleted = DB::table('books')->where('id', $id)->delete();
+                        return redirect()->back();
+                    }
+
+                   
+                
+                        
+                          
 
 }

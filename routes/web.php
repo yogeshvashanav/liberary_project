@@ -21,6 +21,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route::get('/addnewbook', function () {
+//     return view('book.addbook');
+// });
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -34,10 +39,19 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('/Adashboard', [AdminController::class, 'index']);
-Route::get('/add', [BookController::class, 'addbook']);
-Route::get('/addcat', [BookController::class, 'bookcategory']);
+// book add route
+Route::get('/add', [BookController::class, 'addbook'])->name('addbook');
+Route::view('newbook','/book.addbook');
+
+// add category
+Route::get('/addbookcat', [BookController::class, 'bookcategory'])->name('addcat');
+Route::view('newbookcat','/book.addcat');
+
 // Route::get('/show', [BookController::class, 'showbook'])->name('Adashboard');
 Route::get('/show', [AdminController::class, 'showbook'])->name('Adashboard');
 Route::get('/showuser', [UserController::class, 'Ushowbook'])->name('dashboard');
 Route::get('/request/{id}', [BookController::class, 'request']);
-Route::GET('/delete/{id}', [AdminController::class, 'deletebook '])->name('delete');
+Route::get('/delete/{id}', [BookController::class, 'delete'])->name('delete');
+
+
+

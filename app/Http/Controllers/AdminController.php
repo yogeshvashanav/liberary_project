@@ -34,13 +34,10 @@ class AdminController extends Controller
 
 
      }
+//      public function showbook(){
+//         $books= DB::table('')->get();
+//    //     // dd($books);
+//         return view('Adashboard',['data' => $books]);
 
-     public function deletebook( string $id){
-        $book = DB::table('books') 
-                           ->where('id', '$id')->get();
-                           $book->delete();
-        // redirect( 'back');
-         return redirect()->back();
-        
-          }     
+//      }
 }
