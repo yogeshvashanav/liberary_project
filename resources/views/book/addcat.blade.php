@@ -13,13 +13,15 @@
         <div class="row">
             <div class="col-4">
                 <h1>Add New Book</h1>
-                <form action="" method="POST">
+                <form action="{{route('addcat')}}" method="POST">
+                    @csrf
                     <div class="mb-3">
                         <label for="title" class="form-label">Categories Title</label>
                         <input type="text" class="form-control" id="title" name="title" placeholder="Enter book title">
                     </div>
+                    <button type="submit" class="btn btn-warning">Submit</button>
                 </form>
-                <a href="" class="btn btn-warning btn-xl">submit</a>
+                
             </div>
         </div>
        </div>

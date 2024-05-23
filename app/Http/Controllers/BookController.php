@@ -24,15 +24,16 @@ class BookController extends Controller
     // }
 
     public function addbook(Request $req){
-    $book = DB::table('books') 
+        
+             $book = DB::table('books') 
                       ->insert([
                         'title' => $req->title,
                         'author' => $req->author,
                         'code' => $req->code,
-                        'availability' =>$req->avavailability,
+                        'availability' =>$req->availability,
                         'category_id' =>$req->category_id,
                     ]);
-                      return redirect('/showbook');
+                    //   return redirect('show');
 
                       if($book){
                       echo "<h1>data successfully added.</h1>";
@@ -43,10 +44,10 @@ class BookController extends Controller
 
                            
                     
-                     public function bookcategory(){
+                     public function bookcategory(Request $req){
                         $book = DB::table('categories')
                                                 ->insert([
-                                                    'title' => 'Aspirant'
+                                                    'title' => $req->title,
                                                 ]); 
                                                 if($book){
                                                     echo "<h1>data successfully added.</h1>";
@@ -55,10 +56,12 @@ class BookController extends Controller
                                                       }
                                     }
 
-                    //  public function showbook(){
-                    //     $book = DB::table('books')->get();
-                    //     return $book;
-                    //  }
+                    //  public function showbookcat(){
+                    //  $books= DB::table('categories')->get();
+                    //                    dd($books);
+                    // return view('Adashboard',['cat' => $books]);
+
+                    // }
 
                     public function delete($id) {
                         $deleted = DB::table('books')->where('id', $id)->delete();

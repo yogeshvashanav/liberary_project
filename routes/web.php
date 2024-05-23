@@ -40,18 +40,27 @@ require __DIR__.'/auth.php';
 
 Route::get('/Adashboard', [AdminController::class, 'index']);
 // book add route
-Route::get('/add', [BookController::class, 'addbook'])->name('addbook');
+// this route for call the controller function
+Route::post('/add', [BookController::class, 'addbook'])->name('addbook');  
+// this route for viewpage
 Route::view('newbook','/book.addbook');
+// this route for viewpage
+Route::get('/show', [AdminController::class, 'showbook'])->name('Adashboard');
 
 // add category
-Route::get('/addbookcat', [BookController::class, 'bookcategory'])->name('addcat');
+Route::post('/addbookcat', [BookController::class, 'bookcategory'])->name('addcat');
 Route::view('newbookcat','/book.addcat');
+Route::get('/showcat', [AdminController::class, 'showcat'])->name('showcat');
+Route::get('/showuser', [AdminController::class, 'showalluser'])->name('showuser');
+// this route use for delete book as the id
+Route::get('/delete/{id}', [BookController::class, 'delete'])->name('delete');
 
 // Route::get('/show', [BookController::class, 'showbook'])->name('Adashboard');
-Route::get('/show', [AdminController::class, 'showbook'])->name('Adashboard');
+// Route::get('/show', [AdminController::class, 'showbook'])->name('Adashboard');
+// Route::get('/showcat', [BookController::class, 'showbookcat'])->name('Adashboard');
 Route::get('/showuser', [UserController::class, 'Ushowbook'])->name('dashboard');
 Route::get('/request/{id}', [BookController::class, 'request']);
-Route::get('/delete/{id}', [BookController::class, 'delete'])->name('delete');
+
 
 
 

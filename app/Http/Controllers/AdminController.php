@@ -27,13 +27,31 @@ class AdminController extends Controller
   
      public function showbook(){
          $books= DB::table('books')->get();
+         $users = DB::table('users')->get();
+
+        //  dd($users);
     //     // dd($books);
-         return view('Adashboard',['data' => $books]);
+    return view('Adashboard', ['data' => $books, 'users' => $users]);
     //     // return view("blog", ["posts"=>$posts]);
 
 
 
      }
+
+
+     public function showbookcat(){
+        $bookcat= DB::table('categories')->get();
+                        //   dd($bookcat);
+       return view('Adashboard',['data' => $bookcat]);
+
+       }
+
+       
+       public function showalluser(){
+        $users = DB::table('users')->get();
+        return view('Adashboard', ['data' => $users]);
+    }
+    
 //      public function showbook(){
 //         $books= DB::table('')->get();
 //    //     // dd($books);

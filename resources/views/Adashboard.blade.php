@@ -42,6 +42,77 @@
             </div>
         </div>
     </div> 
+ {{-- category table --}}
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    {{ __("Category Table") }}
+                    <h1> All Available Categories  </h1>
+                     
+                      <a href="/newbookcat" class="btn btn-primary  btn-sm">Add category</a>
+                      
+                      <hr>
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                        <th>Category ID</th>
+                        <th>Tittle</th>
+                        <th>Remove</th>
+                       
+                        </tr>
+                         @foreach ($data as $id => $categories)
+                        <tr>
+                            <td>{{  $categories->id }}</td>
+                            <td>{{ $categories->title }}</td>
+                            
+                            <td><a href="{{ route('delete', $book->id) }}" class="btn btn-primary btn-sm">Delete</a></td>
+                        </tr>
+                        @endforeach  
+                    </table>
+    
+                </div>
+            </div>
+        </div>
+    </div> 
+
+  {{-- show user list --}}
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    {{ __("User Table") }}
+                    <h1> All REgister User  </h1>
+                      {{-- <a href="/newbook" class="btn btn-success  btn-sm">Add book</a>
+                      <a href="/newbookcat" class="btn btn-primary  btn-sm">Add category</a>
+                      <a href="#" class="btn btn-info  btn-sm">view Request</a> --}}
+                      <hr>
+                      <table class="table table-bordered table-striped">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Usertype</th>
+                        </tr>
+                        @foreach ($users as $user)
+                        <tr>
+                            <td>{{ $user->id }}</td>
+                             <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->phone }}</td>
+                            <td>{{ $user->address }}</td>
+                            <td>{{ $user->usertype }}</td>
+                            {{-- <td><a href="{{ route('delete', $book->id) }}" class="btn btn-primary btn-sm">Delete</a></td> --}}
+                        </tr>
+                        @endforeach
+                    </table>
+                    
+    
+                </div>
+            </div>
+        </div>
+    </div> 
  </x-app-layout> 
 
 <!DOCTYPE html>
