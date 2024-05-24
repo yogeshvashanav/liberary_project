@@ -9,8 +9,17 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                   
+                  
             <h1> All Available books  </h1>
+            @if(session()->has('message'))
+            <div class="alert alert-success"> 
+                <button type="button" class="close" data-bs-dismiss="alert"
+                aria-hidden="true">x</button>
+             {{session()->get('message')}}
+            </div>
+
+            @endif
+             
 
                     <table class="table table-bordered table-striped">
                         <tr>
@@ -30,7 +39,8 @@
                             <td>{{ $book->code }}</td>  
                             <td>{{ $book->availability }}</td>
                             <td>{{ $book->category_id }}</td>
-                            <td><a href="#" class="btn btn-primary btn-sn" >Reuqest</a></td>
+                            
+                            <td><a href="{{ route('borrow_book', $book->id) }}" class="btn btn-primary btn-sn" >Reuqest To Borrow</a></td>
                         </tr>
                         @endforeach  
                     </table>

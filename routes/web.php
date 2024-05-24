@@ -59,7 +59,11 @@ Route::get('/delete/{id}', [BookController::class, 'delete'])->name('delete');
 // Route::get('/show', [AdminController::class, 'showbook'])->name('Adashboard');
 // Route::get('/showcat', [BookController::class, 'showbookcat'])->name('Adashboard');
 Route::get('/showuser', [UserController::class, 'Ushowbook'])->name('dashboard');
-Route::get('/request/{id}', [BookController::class, 'request']);
+// Route::get('/request/{id}', [BookController::class, 'request']);
+
+
+
+Route::get('/borrow_book/{id}', [BookController::class, 'Borrow_book'])->name('borrow_book');
 
 
 
