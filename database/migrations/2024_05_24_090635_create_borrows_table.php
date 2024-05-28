@@ -11,18 +11,21 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('borrows', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('book_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained('books')->onDelete('cascade');
-
-            $table->string('status')->default('Rejected');
-              
-            $table->timestamps();
-        });
-    }
+   
+     public function up()
+     {
+         Schema::create('borrows', function (Blueprint $table) {
+             $table->id();
+             $table->unsignedBigInteger('user_id');
+             $table->unsignedBigInteger('book_id');
+             $table->string('status')->default('rejected');
+             $table->timestamps();
+ 
+             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+             $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+           
+         });
+     }
 
     /**
      * Reverse the migrations.

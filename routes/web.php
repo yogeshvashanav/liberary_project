@@ -55,16 +55,20 @@ Route::get('/showuser', [AdminController::class, 'showalluser'])->name('showuser
 // this route use for delete book as the id
 Route::get('/delete/{id}', [BookController::class, 'delete'])->name('delete');
 
-// Route::get('/show', [BookController::class, 'showbook'])->name('Adashboard');
-// Route::get('/show', [AdminController::class, 'showbook'])->name('Adashboard');
-// Route::get('/showcat', [BookController::class, 'showbookcat'])->name('Adashboard');
+
+Route::get('/showuser', [UserController::class, 'Ushowbook'])->name('dashboard');
 Route::get('/showuser', [UserController::class, 'Ushowbook'])->name('dashboard');
 // Route::get('/request/{id}', [BookController::class, 'request']);
 
 
 
 Route::get('/borrow_book/{id}', [BookController::class, 'Borrow_book'])->name('borrow_book');
+Route::get('/borrow_request', [AdminController::class, 'borrow_request'])->name('borrow_request');
 
 
 
+
+// Route::get('/show', [BookController::class, 'showbook'])->name('Adashboard');
+// Route::get('/show', [AdminController::class, 'showbook'])->name('Adashboard');
+// Route::get('/showcat', [BookController::class, 'showbookcat'])->name('Adashboard');
 

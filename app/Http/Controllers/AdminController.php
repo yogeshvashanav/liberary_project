@@ -27,30 +27,33 @@ class AdminController extends Controller
   
      public function showbook(){
          $books= DB::table('books')->get();
+         
          $users = DB::table('users')->get();
+         $bookcat = DB::table('categories')->get();
+         $borrow = DB::table('borrows')->get();
 
         //  dd($users);
     //     // dd($books);
-    return view('Adashboard', ['data' => $books, 'users' => $users]);
+    return view('Adashboard', ['data' => $books, 'users' => $users, 'categories' => $bookcat, 'borrows' =>$borrow]);
+    
     //     // return view("blog", ["posts"=>$posts]);
-
 
 
      }
 
 
-     public function showbookcat(){
-        $bookcat= DB::table('categories')->get();
-                        //   dd($bookcat);
-       return view('Adashboard',['data' => $bookcat]);
+    //  public function showbookcat(){
+    //     $bookcat= DB::table('categories')->get();
+    //                     //   dd($bookcat);
+    //    return view('Adashboard',['data' => $bookcat]);
 
-       }
+    //    }
 
        
-       public function showalluser(){
-        $users = DB::table('users')->get();
-        return view('Adashboard', ['data' => $users]);
-    }
+    //    public function showalluser(){
+    //     $users = DB::table('users')->get();
+    //     return view('Adashboard', ['data' => $users]);
+    // }
     
 //      public function showbook(){
 //         $books= DB::table('')->get();

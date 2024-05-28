@@ -71,41 +71,33 @@ class BookController extends Controller
                         return redirect()->back();
                     }
 
-                    public function Borrow_book($id){
-                      // Retrieve the book from the database using the ID
-                      $data = DB::table('books')->find($id);
-                      $available = $data->availability;
-                      // dd($available);
-                      if($available >= '1'){
-                          
-                        if(Auth::id()){
-                          $user_id = Auth::user()->id;
-                          $borrow = new Borrow;
-                            
+                    public function Borrow_book($id)
+                    {
+                        // Retrieve the book from the database using the ID
+                        $data = DB::table('books')->find($id);
+                        $available = $data->availability;
+                    
+                        if ($available >= 1) {
+                            if (Auth::id()) {
+                                $user_id = Auth::user()->id;
+                                $borrow = new Borrow;
+                    
+                                $borrow->book_id = $id;
+                                $borrow->user_id = $user_id;
 
-                          $borrow->book_id = $id;
-                          $borrow->user_id = $user_id;
-
-                          $borrow->save();
-
+                                $borrow->status = 'Applied';
+                    
+                                $borrow->save();
+                    
+                                return redirect()->back()->with('message', 'Your Borrow request is sent to Admin');
+                            } else {
+                                return redirect()->back()->with('message', 'You need to be logged in to borrow a book');
+                            }
+                        } else {
+                            return redirect()->back()->with('message', 'Book Not Available');
                         }
-                        else{
-                          return redirect()->back()->with('message', 'Your Borrow request is send to Admin');
-                        }
-
-                      }
-                      else{
-                        return redirect()->back()->with('message','Book Not Available');
-                      }
-                     
-
-
-    
-
-
-                   
-                
-                        
-                          
                     }
+
+
+                    
 }

@@ -42,6 +42,40 @@
             </div>
         </div>
     </div> 
+ {{-- user request table --}}
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    {{ __("Request") }}
+                    <h1> All users requests  </h1>
+                     
+                     
+                      <hr>
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                        <th>Request ID</th>
+                        <th>user ID</th>
+                        <th>Book ID</th>
+                        <th>status</th>
+                       
+                        </tr>
+                         @foreach ($borrows as $borrow)
+                        <tr>
+                            <td>{{  $borrow->id }}</td>
+                            <td>{{ $borrow->user_id }}</td>
+                            <td>{{ $borrow->book_id }}</td>
+                            <td>{{ $borrow->status }}</td>
+                            
+                            <td><a href="{{ route('borrow_requet', $borrow->id) }}" class="btn btn-primary btn-sm">Accept</a></td>
+                        </tr>
+                        @endforeach  
+                    </table>
+    
+                </div>
+            </div>
+        </div>
+    </div> 
  {{-- category table --}}
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -60,10 +94,10 @@
                         <th>Remove</th>
                        
                         </tr>
-                         @foreach ($data as $id => $categories)
+                         @foreach ($categories as $category)
                         <tr>
-                            <td>{{  $categories->id }}</td>
-                            <td>{{ $categories->title }}</td>
+                            <td>{{  $category->id }}</td>
+                            <td>{{ $category->title }}</td>
                             
                             <td><a href="{{ route('delete', $book->id) }}" class="btn btn-primary btn-sm">Delete</a></td>
                         </tr>
