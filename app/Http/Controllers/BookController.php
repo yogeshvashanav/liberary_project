@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use \App\Models\Borrow;
 Use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Book;
 
 class BookController extends Controller
 {
@@ -40,6 +41,7 @@ class BookController extends Controller
 
                       if($book){
                       echo "<h1>data successfully added.</h1>";
+                      return redirect('show');
                       }else{
                         echo "<h1>data not added.</h1>";
                       }
@@ -70,6 +72,15 @@ class BookController extends Controller
                         $deleted = DB::table('books')->where('id', $id)->delete();
                         return redirect()->back();
                     }
+                        // delete category
+                    public function deletecate($id) {
+                      $delete = DB::table('categories')->where('id', $id)->delete();
+                      return redirect()->back();
+                  }
+                  public function deletereq($id) {
+                    $delete = DB::table('borrows')->where('id', $id)->delete();
+                    return redirect()->back();
+                  }
 
                     public function Borrow_book($id)
                     {
@@ -98,6 +109,38 @@ class BookController extends Controller
                         }
                     }
 
-
+                    
+                    public function approve_book($id) {
+                      // Find the borrow record by ID
+                      $borrow = Borrow::find($id);
+                  
+                      if (!$borrow) {
+                          return redirect()->back()->withErrors(['error' => 'Borrow record not found']);
+                      }
+                  
+                      // Approve the borrow request
+                      $borrow->status = 'Approved';
+                      $borrow->save();
+                  
+                      // Get the book ID from the borrow record
+                      $bookid = $borrow->book_id;
+                  
+                      // Find the book by ID
+                      $book = Book::find($bookid);
+                  
+                      if (!$book) {
+                          return redirect()->back()->withErrors(['error' => 'Book not found']);
+                      }
+                  
+                      // Update the book's availability
+                      $book->availability = (int)$book->availability - 1;
+                  
+                      // Save the updated book information
+                      $book->save();
+                  
+                      // Redirect back with a success message
+                      return redirect()->back()->with('success', 'Book approved successfully');
+                  }
+                  
                     
 }

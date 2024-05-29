@@ -24,15 +24,15 @@
                     <input type="text" class="form-control" id="author" name="author" placeholder="Enter book author">
                 </div>
                 <div class="mb-3">
-                    <label for="title" class="form-label">Title</label>
+                    <label for="title" class="form-label">Book Code</label>
                     <input type="text" class="form-control" id="title" name="code" placeholder="Enter book code">
                 </div>
                 <div class="mb-3">
-                    <label for="title" class="form-label">Title</label>
+                    <label for="title" class="form-label">availability</label>
                     <input type="text" class="form-control" id="title" name="availability" placeholder="Enter book availability">
                 </div>
                 <div class="mb-3">
-                    <label for="title" class="form-label">Title</label>
+                    <label for="title" class="form-label">category</label>
                     <input type="text" class="form-control" id="title" name="category_id" placeholder="Enter book category_id">
                 </div>
                 {{-- <div class="mb-3">

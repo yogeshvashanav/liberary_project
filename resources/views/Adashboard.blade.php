@@ -4,12 +4,15 @@
             {{ __('Welcome TO the smart liberary') }}
         </h2>
     </x-slot>
-
+    <div style="text-align: center;">
+        <h2>You are logged in as Admin</h2>
+    </div>
+    
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    {{ __("You're logged in as Admin!") }}
+                    
                     <h1> All Available books  </h1>
                       <a href="/newbook" class="btn btn-success  btn-sm">Add book</a>
                       <a href="/newbookcat" class="btn btn-primary  btn-sm">Add category</a>
@@ -31,9 +34,9 @@
                             <td>{{ $book->title }}</td>
                             <td>{{ $book->author }}</td>
                             <td>{{ $book->code }}</td>  
-                            <td>{{ $book->availability }}</td>
+                            <td>{{ $book->availability }} 
                             <td>{{ $book->category_id }}</td>
-                            <td><a href="{{ route('delete', $book->id) }}" class="btn btn-primary btn-sm">Delete</a></td>
+                            <td><a href="{{ route('delete', $book->id) }}" class="btn btn-danger btn-sm">Delete</a></td>
                         </tr>
                         @endforeach  
                     </table>
@@ -47,7 +50,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    {{ __("Request") }}
+                    {{-- {{ __("Request") }} --}}
                     <h1> All users requests  </h1>
                      
                      
@@ -57,7 +60,11 @@
                         <th>Request ID</th>
                         <th>user ID</th>
                         <th>Book ID</th>
+                        <th>Available</th>
                         <th>status</th>
+                        <th>Action</th>
+                        <th>Action</th>
+
                        
                         </tr>
                          @foreach ($borrows as $borrow)
@@ -65,9 +72,12 @@
                             <td>{{  $borrow->id }}</td>
                             <td>{{ $borrow->user_id }}</td>
                             <td>{{ $borrow->book_id }}</td>
+                            <td>{{ $book->availability }} </td>
                             <td>{{ $borrow->status }}</td>
                             
-                            <td><a href="{{ route('borrow_requet', $borrow->id) }}" class="btn btn-primary btn-sm">Accept</a></td>
+                            <td><a href="{{route('approve_book',$borrow->id )}}" class="btn btn-primary btn-sm">Accept</a>
+                                <a href="" class="btn btn-warning btn-sm">Reject</a></td>
+                                <td><a href="{{route('deletereq',$borrow->id )}}" class="btn btn-danger btn-sm">Delete</a></td>
                         </tr>
                         @endforeach  
                     </table>
@@ -81,10 +91,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    {{ __("Category Table") }}
+                    {{-- {{ __("Category Table") }} --}}
                     <h1> All Available Categories  </h1>
                      
-                      <a href="/newbookcat" class="btn btn-primary  btn-sm">Add category</a>
+                      <a href="/newbookcat" class="btn btn-success  btn-sm">Add category</a>
                       
                       <hr>
                     <table class="table table-bordered table-striped">
@@ -99,7 +109,7 @@
                             <td>{{  $category->id }}</td>
                             <td>{{ $category->title }}</td>
                             
-                            <td><a href="{{ route('delete', $book->id) }}" class="btn btn-primary btn-sm">Delete</a></td>
+                            <td><a href="{{ route('deletecat',  $category->id ) }}" class="btn btn-danger btn-sm">Delete</a></td>
                         </tr>
                         @endforeach  
                     </table>
@@ -114,7 +124,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    {{ __("User Table") }}
+                    {{-- {{ __("User Table") }} --}}
                     <h1> All REgister User  </h1>
                       {{-- <a href="/newbook" class="btn btn-success  btn-sm">Add book</a>
                       <a href="/newbookcat" class="btn btn-primary  btn-sm">Add category</a>
